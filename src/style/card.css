@@ -1,0 +1,26 @@
+@media (prefers-color-scheme: dark) {
+
+    .card {
+        background: #292A2D;
+        color: white;
+    }
+
+}
+
+@media (prefers-color-scheme: light) {
+
+    .card {
+        background: #7fd3e3;
+        color: black;
+    }
+}
+
+.user-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    height: 200px;
+    overflow: hidden;
+}

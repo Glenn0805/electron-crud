@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
 
+import Cards from './components/card';
+import { Button } from 'antd'
+import ToggleThemeComponent from './components/ToggleThemeComponent';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ToggleThemeComponent />
+      <div className='button-wrapper'>
+        <Button type="primary">
+          Add Project
+        </Button>
+
+      </div>
+
+      <div className='card-wrapper'>
+        <Cards />
+        <Cards />
+        <Cards />
+        <Cards />
+        <Cards />
+        <Cards />
+        <Cards />
+        <Cards />
+      </div >
+
+
+    </>
   );
 }
 
