@@ -1,5 +1,6 @@
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React from 'react';
+import menu from './menu';
 const { Header, Content, Footer } = Layout;
 const HomeLayoutContainer = () => (
     <Layout>
@@ -15,10 +16,7 @@ const HomeLayoutContainer = () => (
                 theme="dark"
                 mode="horizontal"
                 defaultSelectedKeys={['2']}
-                items={new Array(2).fill(null).map((_, index) => ({
-                    key: String(index + 1),
-                    label: `nav ${index + 1}`,
-                }))}
+                items={menu}
                 onClick={(e) => { console.log(e) }}
             />
         </Header>
@@ -27,6 +25,7 @@ const HomeLayoutContainer = () => (
             style={{
                 padding: '0 50px',
                 marginTop: 64,
+                display: 'flex',
             }}
         >
             {/* <Breadcrumb
