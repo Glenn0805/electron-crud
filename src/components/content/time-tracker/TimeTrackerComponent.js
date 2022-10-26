@@ -1,8 +1,13 @@
 import React from 'react'
+import { Card } from 'antd';
 
 const TimeTrackerComponent = () => {
     return (
-        <div>TimeTrackerComponent</div>
+
+        <Card>
+
+        </Card>
+
     )
 }
 
