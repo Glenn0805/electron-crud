@@ -4,10 +4,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.min.css'
 import './App.css'
+import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+
   </>
 );
 

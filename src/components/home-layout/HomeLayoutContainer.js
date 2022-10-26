@@ -1,7 +1,7 @@
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React from 'react';
 const { Header, Content, Footer } = Layout;
-const App = () => (
+const HomeLayoutContainer = () => (
     <Layout>
         <Header
             style={{
@@ -15,10 +15,11 @@ const App = () => (
                 theme="dark"
                 mode="horizontal"
                 defaultSelectedKeys={['2']}
-                items={new Array(3).fill(null).map((_, index) => ({
+                items={new Array(2).fill(null).map((_, index) => ({
                     key: String(index + 1),
                     label: `nav ${index + 1}`,
                 }))}
+                onClick={(e) => { console.log(e) }}
             />
         </Header>
         <Content
@@ -28,7 +29,7 @@ const App = () => (
                 marginTop: 64,
             }}
         >
-            <Breadcrumb
+            {/* <Breadcrumb
                 style={{
                     margin: '16px 0',
                 }}
@@ -36,7 +37,7 @@ const App = () => (
                 <Breadcrumb.Item>Home</Breadcrumb.Item>
                 <Breadcrumb.Item>List</Breadcrumb.Item>
                 <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
+            </Breadcrumb> */}
             <div
                 className="site-layout-background"
                 style={{
@@ -56,4 +57,4 @@ const App = () => (
         </Footer>
     </Layout>
 );
-export default App;
+export default HomeLayoutContainer;
