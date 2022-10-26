@@ -9,7 +9,7 @@ import contentRoute from './content-routes';
 const { Header, Content, Footer } = Layout;
 
 const HomeLayoutContainer = () => {
-    let href = document.location.pathname.split('/')[1]
+    let href = document.location.pathname.slice(1)
     const [selectedKey, setSelectedKey] = useState(href)
 
 
