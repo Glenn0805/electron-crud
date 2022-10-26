@@ -1,31 +1,13 @@
 
 import Cards from './components/card';
 import { Button } from 'antd'
+import { HashRouter, Route, Routes } from 'react-router-dom'
+import HomeLayoutContainer from './components/home-layout/HomeLayoutContainer';
 import ToggleThemeComponent from './components/ToggleThemeComponent';
+import AppLayout from './components/home-layout/AppLayout';
 function App() {
   return (
-    <>
-      <ToggleThemeComponent />
-      <div className='button-wrapper'>
-        <Button type="primary">
-          Add Project
-        </Button>
-
-      </div>
-
-      <div className='card-wrapper'>
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-      </div >
-
-
-    </>
+    <AppLayout />
   );
 }
 
