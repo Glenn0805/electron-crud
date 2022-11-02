@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 import menu from './menu';
 import { Route, Routes, Link, Navigate } from 'react-router-dom'
 import contentRoute from './content-routes';
-
+import './layout.css'
 
 
 const { Header, Content, Footer } = Layout;
 
 const HomeLayoutContainer = () => {
     let href = document.location.pathname.slice(1)
+
     const [selectedKey, setSelectedKey] = useState(href)
 
 
@@ -36,20 +37,21 @@ const HomeLayoutContainer = () => {
             <Content
                 className="site-layout"
                 style={{
-                    padding: '0 50px',
+                    padding: '10px 30px',
                     marginTop: 64,
-                    display: 'flex',
                 }}
             >
+
+
                 {/* <Breadcrumb
-                style={{
-                    margin: '16px 0',
-                }}
-            >
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                <Breadcrumb.Item>List</Breadcrumb.Item>
-                <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb> */}
+                    style={{
+                        margin: '16px 0',
+                    }}
+                >
+                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    <Breadcrumb.Item>List</Breadcrumb.Item>
+                    <Breadcrumb.Item>App</Breadcrumb.Item>
+                </Breadcrumb> */}
                 <div
                     className="site-layout-background"
                     style={{
