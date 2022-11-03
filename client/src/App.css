@@ -1,0 +1,54 @@
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #2C3333;
+    /* color: white; */
+  }
+
+  .card {
+    background: #395B64;
+    color: #E7F6F2;
+  }
+
+  .card .ant-card-actions {
+    background-color: #A5C9CA;
+  }
+
+  h1,
+  h3 {
+    color: white;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: #F7FBFC;
+    /* color: black; */
+  }
+
+  .card {
+    background: #D6E6F2;
+    color: #769FCD;
+  }
+
+  .card .ant-card-actions {
+    background-color: #B9D7EA;
+  }
+
+  h1,
+  h3 {
+    color: black;
+  }
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 5px;
+  flex-wrap: wrap;
+}
+
+.button-wrapper {
+  padding: 20px;
+}
