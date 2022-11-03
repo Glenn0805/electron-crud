@@ -3,7 +3,7 @@ import { useStopwatch } from 'react-timer-hook'
 import { Button, Typography, Form } from 'antd'
 
 
-const TImerComponent = () => {
+const TImerComponent = (props) => {
     const [buttonLabel, setButtonLabel] = useState('Start')
     const [buttonColor, setButtonColor] = useState('primary')
     const time = new Date()
@@ -21,6 +21,7 @@ const TImerComponent = () => {
     } = useStopwatch({ autoStart: false });
 
     const startAndStopTimer = () => {
+        props.test()
         if (isRunning) {
             setButtonLabel('Start')
             setButtonColor('primary')
