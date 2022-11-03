@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, TimePicker, Typography, Input, Button } from 'antd'
-import { EditOutlined } from '@ant-design/icons'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import SelectTaskComponent from '../time-tracker-component/SelectTaskComponent'
 const TimeRecordComponent = ({ time = '00:00:00', selectedTask = '' }) => {
     const { RangePicker } = TimePicker
@@ -15,6 +15,7 @@ const TimeRecordComponent = ({ time = '00:00:00', selectedTask = '' }) => {
                 </div>
 
                 <Button type="primary" size='large' icon={<EditOutlined />} />
+                <Button type="danger" size='large' icon={<DeleteOutlined />} />
             </div>
         </Card>
     )
