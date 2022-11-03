@@ -18,8 +18,10 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import Application from '@ioc:Adonis/Core/Application'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+const Home = Application.makePath('routes/home/')
+
+
+//home routes
+require(Home+ 'time-tracker.ts')
