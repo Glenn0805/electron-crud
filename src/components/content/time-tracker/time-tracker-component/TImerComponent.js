@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useStopwatch } from 'react-timer-hook'
 import { Button, Typography, Form } from 'antd'
+
+
 const TImerComponent = () => {
     const [buttonLabel, setButtonLabel] = useState('Start')
     const [buttonColor, setButtonColor] = useState('primary')
@@ -36,7 +38,7 @@ const TImerComponent = () => {
         <>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                 <Title >{`${hrs}:${mins}:${secs}`}</Title >
-                <Button size='large' type={buttonColor} onClick={startAndStopTimer}>{buttonLabel}</Button>
+                <Button size='large' type={buttonColor} onClick={startAndStopTimer}> {buttonLabel}</Button>
             </div>
 
         </>
