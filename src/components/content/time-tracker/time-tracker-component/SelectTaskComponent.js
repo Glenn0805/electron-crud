@@ -3,9 +3,10 @@ import { Divider, Input, Select, Space, Button } from 'antd';
 import React, { useState, useRef } from 'react';
 const { Option } = Select;
 let index = 0;
-const SelectTaskComponent = () => {
+const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
     const [items, setItems] = useState(['Intramart', 'Anshin', 'Break', 'Training', 'Others']);
     const [name, setName] = useState('');
+    const [selectedValue, setSelectedValue] = useState(task)
     const inputRef = useRef(null);
     const onNameChange = (event) => {
         setName(event.target.value);
@@ -18,12 +19,20 @@ const SelectTaskComponent = () => {
             inputRef.current?.focus();
         }, 0);
     };
+    const SelectedTaskOnchange = (e) => {
+        setSelectedValue(e)
+    }
     return (
         <Select
             style={{
-                width: 300,
+                width: width,
+                height: '36px'
             }}
+            onChange={SelectedTaskOnchange}
+            size="large"
             placeholder="Select Task"
+            defaultValue={defaultValue}
+            value={selectedValue}
             dropdownRender={(menu) => (
                 <>
                     {menu}
