@@ -12,9 +12,13 @@ const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
     const onNameChange = (event) => {
         setName(event.target.value);
     };
-    const addItem = (e) => {
+    const addItem = async (e) => {
         e.preventDefault();
-        setItems([...items, name || `New item ${index++}`]);
+
+        await axios.post('http://127.0.0.1:3333/home/add-task').then((response) => {
+            if (response.error) return console.log('TEST')
+        })
+
         setName('');
         setTimeout(() => {
             inputRef.current?.focus();
