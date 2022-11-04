@@ -1,19 +1,26 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, EditOutlined } from '@ant-design/icons';
 import { Divider, Input, Select, Space, Button } from 'antd';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios'
 const { Option } = Select;
 let index = 0;
 const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
-    const [items, setItems] = useState(['Intramart', 'Anshin', 'Break', 'Training', 'Others']);
+    const [isEdit, setIsEdit] = useState(false)
+    const [items, setItems] = useState([]);
     const [name, setName] = useState('');
     const [selectedValue, setSelectedValue] = useState(task)
     const inputRef = useRef(null);
     const onNameChange = (event) => {
         setName(event.target.value);
     };
-    const addItem = (e) => {
+    const addItem = async (e) => {
         e.preventDefault();
-        setItems([...items, name || `New item ${index++}`]);
+        console.log('wew')
+        await axios.post('http://127.0.0.1:3333/home/add-task', { taskName: name }).then((response) => {
+            let { data } = response
+            if (data.error) return console.log('TEST')
+        })
+
         setName('');
         setTimeout(() => {
             inputRef.current?.focus();
@@ -22,6 +29,23 @@ const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
     const SelectedTaskOnchange = (e) => {
         setSelectedValue(e)
     }
+
+    const getAllTask = async () => {
+        try {
+            let { data } = await axios.get('http://127.0.0.1:3333/home/get-task')
+            setItems(data.taskOption)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const isEditOnclick = () => {
+        setIsEdit(!isEdit)
+    }
+
+    useEffect(() => { getAllTask() }, [])
+
+
     return (
         <Select
             style={{
@@ -35,32 +59,56 @@ const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
             value={selectedValue}
             dropdownRender={(menu) => (
                 <>
-                    {menu}
+                    <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+                        {isEdit ? (<Button type="text" icon={<EditOutlined />} onClick={isEditOnclick}>
+                            Done
+                        </Button>) :
+                            (<>
+                                <Button type="text" icon={<EditOutlined />} onClick={isEditOnclick}>
+                                    Edit Tasks
+                                </Button>
+                            </>)}
+
+                    </div>
+
                     <Divider
                         style={{
                             margin: '8px 0',
                         }}
                     />
-                    <Space
-                        style={{
-                            padding: '0 8px 4px',
-                        }}
-                    >
-                        <Input
-                            placeholder="Enter task"
-                            ref={inputRef}
-                            value={name}
-                            onChange={onNameChange}
-                        />
-                        <Button type="text" icon={<PlusOutlined />} onClick={addItem}>
-                            Add Task
-                        </Button>
-                    </Space>
+                    {menu}
+                    {
+                        !isEdit ? (<>
+                            <Divider
+                                style={{
+                                    margin: '8px 0',
+                                }}
+                            />
+                            <Space
+                                style={{
+                                    padding: '0 8px 4px',
+                                }}
+                            >
+
+                                <Input
+                                    placeholder="Enter task"
+                                    ref={inputRef}
+                                    value={name}
+                                    onChange={onNameChange}
+                                />
+
+                                <Button type="text" icon={<PlusOutlined />} onClick={addItem}>
+                                    Add Task
+                                </Button>
+
+
+                            </Space></>) : ''
+                    }
                 </>
             )}
         >
             {items.map((item) => (
-                <Option key={item}>{item}</Option>
+                <Option key={item.value}>{item.label}</Option>
             ))}
         </Select>
     );
