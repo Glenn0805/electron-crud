@@ -1,10 +1,11 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider, Input, Select, Space, Button } from 'antd';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios'
 const { Option } = Select;
 let index = 0;
 const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
-    const [items, setItems] = useState(['Intramart', 'Anshin', 'Break', 'Training', 'Others']);
+    const [items, setItems] = useState([]);
     const [name, setName] = useState('');
     const [selectedValue, setSelectedValue] = useState(task)
     const inputRef = useRef(null);
@@ -22,6 +23,19 @@ const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
     const SelectedTaskOnchange = (e) => {
         setSelectedValue(e)
     }
+
+    const getAllTask = async () => {
+        try {
+            let { data } = await axios.get('http://127.0.0.1:3333/home/get-task')
+            setItems(data.taskOption)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => { getAllTask() }, [])
+
+
     return (
         <Select
             style={{
@@ -60,7 +74,7 @@ const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
             )}
         >
             {items.map((item) => (
-                <Option key={item}>{item}</Option>
+                <Option key={item.value}>{item.label}</Option>
             ))}
         </Select>
     );
