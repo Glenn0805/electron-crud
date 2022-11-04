@@ -18,4 +18,18 @@ export default class TimeTrackersController {
             console.log(error)
         }
     }
+
+    public async addTask({response,request}:HttpContextContract){
+        try {
+            let {taskName}=request.all()
+            if(!taskName) return response.send({error:true})
+
+            await Task.create({task_name:taskName})
+            
+
+            return response.send({error:false})
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
