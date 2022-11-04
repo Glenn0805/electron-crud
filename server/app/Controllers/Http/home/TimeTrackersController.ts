@@ -11,7 +11,9 @@ export default class TimeTrackersController {
         try {
             const taskList = await Task.query()
 
-            return response.send({taskList})
+            let taskOption:[{label:string,value:number}] = taskList.map((item)=>({label:item.task_name,value:item.id}))
+
+            return response.send({taskOption})
         } catch (error) {
             console.log(error)
         }
