@@ -14,9 +14,10 @@ const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
     };
     const addItem = async (e) => {
         e.preventDefault();
-
-        await axios.post('http://127.0.0.1:3333/home/add-task').then((response) => {
-            if (response.error) return console.log('TEST')
+        console.log('wew')
+        await axios.post('http://127.0.0.1:3333/home/add-task', { taskName: name }).then((response) => {
+            let { data } = response
+            if (data.error) return console.log('TEST')
         })
 
         setName('');
