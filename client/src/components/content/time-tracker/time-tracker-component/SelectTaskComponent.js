@@ -1,10 +1,11 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, EditOutlined } from '@ant-design/icons';
 import { Divider, Input, Select, Space, Button } from 'antd';
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios'
 const { Option } = Select;
 let index = 0;
 const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
+    const [isEdit, setIsEdit] = useState(false)
     const [items, setItems] = useState([]);
     const [name, setName] = useState('');
     const [selectedValue, setSelectedValue] = useState(task)
@@ -38,6 +39,10 @@ const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
         }
     }
 
+    const isEditOnclick = () => {
+        setIsEdit(!isEdit)
+    }
+
     useEffect(() => { getAllTask() }, [])
 
 
@@ -54,27 +59,51 @@ const SelectTaskComponent = ({ defaultValue = "", width = 300, task }) => {
             value={selectedValue}
             dropdownRender={(menu) => (
                 <>
-                    {menu}
+                    <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+                        {isEdit ? (<Button type="text" icon={<EditOutlined />} onClick={isEditOnclick}>
+                            Done
+                        </Button>) :
+                            (<>
+                                <Button type="text" icon={<EditOutlined />} onClick={isEditOnclick}>
+                                    Edit Tasks
+                                </Button>
+                            </>)}
+
+                    </div>
+
                     <Divider
                         style={{
                             margin: '8px 0',
                         }}
                     />
-                    <Space
-                        style={{
-                            padding: '0 8px 4px',
-                        }}
-                    >
-                        <Input
-                            placeholder="Enter task"
-                            ref={inputRef}
-                            value={name}
-                            onChange={onNameChange}
-                        />
-                        <Button type="text" icon={<PlusOutlined />} onClick={addItem}>
-                            Add Task
-                        </Button>
-                    </Space>
+                    {menu}
+                    {
+                        !isEdit ? (<>
+                            <Divider
+                                style={{
+                                    margin: '8px 0',
+                                }}
+                            />
+                            <Space
+                                style={{
+                                    padding: '0 8px 4px',
+                                }}
+                            >
+
+                                <Input
+                                    placeholder="Enter task"
+                                    ref={inputRef}
+                                    value={name}
+                                    onChange={onNameChange}
+                                />
+
+                                <Button type="text" icon={<PlusOutlined />} onClick={addItem}>
+                                    Add Task
+                                </Button>
+
+
+                            </Space></>) : ''
+                    }
                 </>
             )}
         >
