@@ -5,8 +5,12 @@ import ProfileComponent from './profile-component/ProfileComponent';
 import TImerComponent from './time-tracker-component/TImerComponent';
 import TimeLogsComponent from './time-logs-component/TimeLogsComponent';
 import axios from 'axios'
+import useTimeTrackerState from './hooks/useTimeTrackerState';
 
 const TimeTrackerComponent = () => {
+    const test = useTimeTrackerState('test')
+
+    console.log(test)
     const testFunction = () => {
         axios.get('http://127.0.0.1:3333/home').then((response) => {
             console.log(response.data)
